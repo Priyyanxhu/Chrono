@@ -78,8 +78,8 @@ export default function ReportFound(){
       <form onSubmit={handleSubmit} className="bg-white rounded-[24px] border border-slate-200 p-6 sm:p-7 space-y-5 mt-4">
         <div>
           <div className="inline-flex px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-xs font-bold tracking-widest text-teal-700">POLICE INTAKE • RESCUE / TRACE</div>
-          <h1 className="display text-2xl font-extrabold mt-2">Found Person Intake — ORION</h1>
-          <p className="text-sm text-slate-600 mt-1">For Police / Hospital / NGO — 1-8 photos, FIR linkage if available. ORION scans all FIR missing cases instantly.</p>
+          <h1 className="display text-2xl font-extrabold mt-2">Found Person Intake — CHRONO</h1>
+          <p className="text-sm text-slate-600 mt-1">For Police / Hospital / NGO — 1-8 photos, FIR linkage if available. CHRONO scans all FIR missing cases instantly.</p>
         </div>
         <div>
           <label className="text-sm font-bold text-slate-700 flex items-center justify-between">Photos * <span className="text-xs font-semibold text-slate-500">{photos.length}/8</span></label>
@@ -134,7 +134,7 @@ export default function ReportFound(){
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-bold text-slate-700">Found Location *</label>
-            <input required value={form.foundLocation} onChange={e=>setForm({...form,foundLocation:e.target.value})} placeholder="Location where found" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
+            <input required value={form.foundLocation} onChange={e=>setForm({...form,foundLocation:e.target.value})} placeholder="Nizamuddin Station, Delhi" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
           </div>
           <div>
             <label className="text-sm font-bold text-slate-700">Found Date *</label>
@@ -149,13 +149,13 @@ export default function ReportFound(){
           <div className="text-xs font-black tracking-widest text-teal-700 flex items-center gap-1.5"><ShieldCheck size={12}/> POLICE INTAKE DETAILS</div>
           <div className="grid sm:grid-cols-3 gap-3 mt-3">
             <div><label className="text-xs font-bold text-slate-700">FIR Linked (if any)</label><input value={form.firLinked} onChange={e=>setForm({...form,firLinked:e.target.value})} placeholder="123/2024" className="mt-1 w-full px-3 py-2 rounded-xl border border-teal-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
-            <div><label className="text-xs font-bold text-slate-700">Police Station</label><input value={form.policeStation} onChange={e=>setForm({...form,policeStation:e.target.value})} placeholder="Police Station" className="mt-1 w-full px-3 py-2 rounded-xl border border-teal-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
-            <div><label className="text-xs font-bold text-slate-700">Rescued By</label><input value={form.rescuedBy} onChange={e=>setForm({...form,rescuedBy:e.target.value})} placeholder="Rescued by" className="mt-1 w-full px-3 py-2 rounded-xl border border-teal-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
+            <div><label className="text-xs font-bold text-slate-700">Police Station</label><input value={form.policeStation} onChange={e=>setForm({...form,policeStation:e.target.value})} placeholder="Nizamuddin PS" className="mt-1 w-full px-3 py-2 rounded-xl border border-teal-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
+            <div><label className="text-xs font-bold text-slate-700">Rescued By</label><input value={form.rescuedBy} onChange={e=>setForm({...form,rescuedBy:e.target.value})} placeholder="SI Amit, NGO, Hospital" className="mt-1 w-full px-3 py-2 rounded-xl border border-teal-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
           </div>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          <div><label className="text-sm font-bold text-slate-700">Reporting Officer / Your Name</label><input value={form.reporterName} onChange={e=>setForm({...form,reporterName:e.target.value})} placeholder="Your name" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
+          <div><label className="text-sm font-bold text-slate-700">Reporting Officer / Your Name</label><input value={form.reporterName} onChange={e=>setForm({...form,reporterName:e.target.value})} placeholder="SI Amit Kumar / NGO" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
           <div><label className="text-sm font-bold text-slate-700">Phone</label><input value={form.reporterPhone} onChange={e=>setForm({...form,reporterPhone:e.target.value})} placeholder="+91 9xxxx xxxxx" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/></div>
         </div>
         {error && <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl text-sm font-medium">{error}</div>}

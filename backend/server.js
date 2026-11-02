@@ -69,7 +69,7 @@ function saveImageBuffer(buffer, originalName){
 
 // --- API ROUTES ---
 
-app.get("/api/health", (req,res)=> res.json({ status:"ok", time:new Date().toISOString(), version:"2.0.0", db: "sqlite", dbPath: path.join(DATA_DIR, "orion.db") }));
+app.get("/api/health", (req,res)=> res.json({ status:"ok", time:new Date().toISOString(), version:"2.0.0", db: "sqlite", dbPath: path.join(DATA_DIR, "chrono.db") }));
 
 app.get("/api/stats", (req,res)=>{
   const s = getStats();
@@ -99,7 +99,7 @@ app.get("/api/stats", (req,res)=>{
 app.get("/api/db/info", (req,res)=>{
   const s = getStats();
   res.json({
-    path: path.join(DATA_DIR, "orion.db"),
+    path: path.join(DATA_DIR, "chrono.db"),
     tables: ["lost_persons","lost_photos","found_persons","found_photos"],
     stats: s
   });
@@ -146,7 +146,7 @@ app.get("/api/found/:id", (req,res)=>{
   res.json(p);
 });
 
-// Create lost report — MULTI-PHOTO
+// Create lost report — MULTI-PHOTO — POLICE EDITION
 app.post("/api/lost", uploadAny, async (req,res)=>{
   try{
     const { name, age, gender, lastSeenLocation, lastSeenDate, description, contactName, contactPhone, contactEmail, firNumber, policeStation, ioName } = req.body;
@@ -189,7 +189,7 @@ app.post("/api/lost", uploadAny, async (req,res)=>{
   }
 });
 
-// Create found report — MULTI-PHOTO
+// Create found report — MULTI-PHOTO — POLICE EDITION
 app.post("/api/found", uploadAny, async (req,res)=>{
   try{
     const { name, estimatedAge, gender, foundLocation, foundDate, description, reporterName, reporterPhone, firLinked, policeStation, rescuedBy } = req.body;
@@ -476,7 +476,7 @@ if (fs.existsSync(FRONTEND_DIST)) {
     res.sendFile(path.join(FRONTEND_DIST, "index.html"));
   });
 } else {
-  app.get("/", (req,res)=> res.json({ name:"ORION API", message:"AI powered missing person identification", endpoints: ["/api/lost","/api/found","/api/matches","/api/stats"], db: "SQLite at data/orion.db" }));
+  app.get("/", (req,res)=> res.json({ name:"CHRONO API", message:"AI powered missing person identification", endpoints: ["/api/lost","/api/found","/api/matches","/api/stats"], db: "SQLite at data/CHRONO.db" }));
 }
 
 app.use((err, req,res,next)=>{
@@ -485,7 +485,7 @@ app.use((err, req,res,next)=>{
 });
 
 app.listen(PORT, ()=> {
-  console.log(`ORION backend running on http://localhost:${PORT}`);
-  console.log(`SQLite DB at ${path.join(DATA_DIR, "orion.db")}`);
+  console.log(`CHRONO backend running on http://localhost:${PORT}`);
+  console.log(`SQLite DB at ${path.join(DATA_DIR, "chrono.db")}`);
   if (fs.existsSync(FRONTEND_DIST)) console.log(`Serving frontend from ${FRONTEND_DIST}`);
 });

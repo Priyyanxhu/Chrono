@@ -1,6 +1,6 @@
 @echo off
 echo ==========================================
-echo   ORION - Development Mode
+echo   CHRONO - Development Mode
 echo   Backend : http://localhost:5000
 echo   Frontend: http://localhost:5173
 echo ==========================================

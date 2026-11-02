@@ -1,5 +1,5 @@
 /**
- * ORION Matching Engine
+ * CHRONO Matching Engine
  * Simulates AI face matching with multi-factor scoring
  * In production: replace with InsightFace / FaceNet embeddings + cosine similarity
  */

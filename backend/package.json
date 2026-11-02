@@ -1,8 +1,8 @@
 {
-  "name": "orion-backend",
+  "name": "chrono-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "ORION Backend - AI powered missing person identification",
+  "description": "CHRONO Backend - AI powered missing person identification",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -13,8 +13,8 @@ function Footer(){
     <footer className="border-t border-slate-200 bg-white mt-10">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 grid md:grid-cols-3 gap-8 text-sm">
         <div>
-          <div className="flex items-center gap-2 font-black text-slate-900"><div className="w-7 h-7 rounded-lg bg-gradient-to-br from-slate-900 to-teal-700 text-white flex items-center justify-center text-xs">O</div> ORION</div>
-          <p className="text-slate-600 mt-2 leading-relaxed">AI-powered missing person identification for Law Enforcement. FIR-linked, multi-photo, age-progressed matching to reunite families — even after years apart.</p>
+          <div className="flex items-center gap-2 font-black text-slate-900"><div className="w-7 h-7 rounded-lg bg-gradient-to-br from-slate-900 to-teal-700 text-white flex items-center justify-center text-xs">C</div> CHRONO</div>
+          <p className="text-slate-600 mt-2 leading-relaxed"><span className="font-bold text-slate-900">Police Edition</span> — AI-powered missing person identification for Law Enforcement. FIR-linked, multi-photo, age-progressed matching to reunite families — even after years apart.</p>
         </div>
         <div>
           <div className="font-bold text-slate-900">How it works</div>
@@ -27,7 +27,7 @@ function Footer(){
         <div>
           <div className="font-bold text-slate-900">Safety</div>
           <p className="text-slate-600 mt-2">All matches require human verification. Contact police/NGOs before any in-person meeting. Photos are encrypted at rest.</p>
-          <div className="text-xs text-slate-500 mt-3">© 2026 ORION • For demo • Not a replacement for official investigation</div>
+          <div className="text-xs text-slate-500 mt-3">© 2026 CHRONO • For demo • Not a replacement for official investigation</div>
         </div>
       </div>
     </footer>
