@@ -17,9 +17,8 @@ export default function Navbar(){
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[64px] flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-900 to-teal-700 flex items-center justify-center text-white font-black tracking-widest text-sm">C</div>
-          <span className="display font-extrabold text-xl tracking-tight">CHRONO</span>
-          <span className="hidden sm:inline-flex ml-2 text-xs font-bold tracking-widest text-white bg-slate-900 px-2.5 py-1 rounded-full border border-slate-700">POLICE EDITION</span>
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-900 to-teal-700 flex items-center justify-center text-white font-black tracking-widest text-sm">O</div>
+          <span className="display font-extrabold text-xl tracking-tight">ORION</span>
           <span className="hidden lg:inline-flex text-[10px] font-bold tracking-widest text-teal-700 bg-teal-50 px-2 py-1 rounded-full border border-teal-200">AI REUNITE</span>
         </Link>
 

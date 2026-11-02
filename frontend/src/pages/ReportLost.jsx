@@ -153,7 +153,7 @@ export default function ReportLost(){
         <form onSubmit={handleSubmit} className="bg-white rounded-[24px] border border-slate-200 p-6 sm:p-7 space-y-5">
           <div>
             <div className="inline-flex px-2.5 py-1 rounded-full bg-slate-900 text-white text-xs font-bold tracking-widest">POLICE • FIR LINKED</div>
-            <h1 className="display text-2xl font-extrabold mt-2">Register Missing Case — CHRONO</h1>
+            <h1 className="display text-2xl font-extrabold mt-2">Register Missing Case — ORION</h1>
             <p className="text-sm text-slate-600 mt-1">For IOs / Control Room — FIR-linked, multi-photo (1-8), auto AI aging for 4+ year cases.</p>
           </div>
 
@@ -218,7 +218,7 @@ export default function ReportLost(){
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-bold text-slate-700">Full Name *</label>
-              <input required value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="e.g., Aarav Sharma" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"/>
+              <input required value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="Full name" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"/>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -237,7 +237,7 @@ export default function ReportLost(){
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-bold text-slate-700">Last Seen Location *</label>
-              <input required value={form.lastSeenLocation} onChange={e=>setForm({...form,lastSeenLocation:e.target.value})} placeholder="Connaught Place, New Delhi" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
+              <input required value={form.lastSeenLocation} onChange={e=>setForm({...form,lastSeenLocation:e.target.value})} placeholder="Last seen location" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
             </div>
             <div>
               <label className="text-sm font-bold text-slate-700">Last Seen Date *</label>
@@ -264,20 +264,20 @@ export default function ReportLost(){
               </div>
               <div>
                 <label className="text-xs font-bold text-slate-300">Police Station / Thana</label>
-                <input value={form.policeStation} onChange={e=>setForm({...form,policeStation:e.target.value})} placeholder="Connaught Place PS" className="mt-1 w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-800 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
+                <input value={form.policeStation} onChange={e=>setForm({...form,policeStation:e.target.value})} placeholder="Police Station / Thana" className="mt-1 w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-800 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
               </div>
               <div>
                 <label className="text-xs font-bold text-slate-300">IO Name</label>
-                <input value={form.ioName} onChange={e=>setForm({...form,ioName:e.target.value})} placeholder="SI Rajesh Kumar" className="mt-1 w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-800 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
+                <input value={form.ioName} onChange={e=>setForm({...form,ioName:e.target.value})} placeholder="Investigating officer" className="mt-1 w-full px-3 py-2 rounded-xl border border-slate-700 bg-slate-800 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
               </div>
             </div>
-            <p className="text-xs text-slate-400 mt-2">FIR-linked — CHRONO will prioritize matches within same Thana & IO jurisdiction.</p>
+            <p className="text-xs text-slate-400 mt-2">FIR-linked — ORION will prioritize matches within same Thana & IO jurisdiction.</p>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4">
             <div>
               <label className="text-sm font-bold text-slate-700">Your Name (Family/Complainant)</label>
-              <input value={form.contactName} onChange={e=>setForm({...form,contactName:e.target.value})} placeholder="Rajesh Sharma" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
+              <input value={form.contactName} onChange={e=>setForm({...form,contactName:e.target.value})} placeholder="Contact name" className="mt-1 w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500"/>
             </div>
             <div>
               <label className="text-sm font-bold text-slate-700">Phone</label>
@@ -346,7 +346,7 @@ export default function ReportLost(){
             <div className="bg-gradient-to-br from-teal-600 to-cyan-600 rounded-[24px] p-6 text-white">
               <h3 className="display font-extrabold text-lg flex items-center gap-2"><Sparkles size={18}/> Why multiple photos help</h3>
               <p className="text-sm text-teal-50 leading-relaxed mt-2">
-                One photo can be blurry, angled, or old. CHRONO creates a <b>separate 128-D embedding for each photo</b> and uses the <b>best face similarity</b> across all pairs — boosting recall by <b>~27%</b> vs single photo.
+                One photo can be blurry, angled, or old. ORION creates a <b>separate 128-D embedding for each photo</b> and uses the <b>best face similarity</b> across all pairs — more reliable than a single photo.
               </p>
               <div className="mt-4 bg-white/15 backdrop-blur rounded-xl p-3 border border-white/20">
                 <div className="text-xs font-black tracking-widest opacity-80">HOW IT WORKS</div>

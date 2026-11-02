@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename)
 const DATA_DIR = path.join(__dirname, 'data')
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
 
-const DB_PATH = path.join(DATA_DIR, 'chrono.db')
+const DB_PATH = path.join(DATA_DIR, 'orion.db')
 export const db = new DatabaseSync(DB_PATH)
 
 // Enable foreign keys and WAL
@@ -76,7 +76,7 @@ export function initDb() {
     );
     CREATE INDEX IF NOT EXISTS idx_found_photos_person ON found_photos(person_id);
   `)
-  // Police edition: add FIR / station columns if missing (for police use)
+  // Police use: add FIR / station columns if missing
   try { db.exec(`ALTER TABLE lost_persons ADD COLUMN firNumber TEXT`); } catch {}
   try { db.exec(`ALTER TABLE lost_persons ADD COLUMN policeStation TEXT`); } catch {}
   try { db.exec(`ALTER TABLE lost_persons ADD COLUMN ioName TEXT`); } catch {}
@@ -110,10 +110,6 @@ export function initDb() {
           migrated = true
         }
       } catch (e) { console.error('found.json migration failed', e) }
-    }
-    // If still empty, seed demo data
-    if (!migrated && lostCount === 0 && foundCount === 0) {
-      seedDemo()
     }
   }
 }
@@ -182,33 +178,6 @@ function insertFoundFromLegacy(p) {
   }
 }
 
-function seedDemo() {
-  function norm(arr) { const n = Math.sqrt(arr.reduce((s, v) => s + v * v, 0)); return arr.map(v => v / n) }
-  const demoLost = [
-    { name: "Aarav Sharma", age: 8, gender: "Male", lastSeenLocation: "Connaught Place, New Delhi", lastSeenDate: "2021-06-15", yearsMissing: 5, description: "Wearing blue t-shirt, black shorts. Scar on left eyebrow.", contactName: "Rajesh Sharma", contactPhone: "+91 98101 23456", contactEmail: "rajesh.sharma@email.com", imageUrls: ["https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=400&fit=crop&crop=face"], embeddings: [norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.11+1)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.11+1.02)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.11+0.98)*0.5))], createdAt: new Date(Date.now() - 1000*60*60*24*30).toISOString() },
-    { name: "Priya Verma", age: 14, gender: "Female", lastSeenLocation: "MG Road, Bangalore", lastSeenDate: "2023-11-20", yearsMissing: 2.7, description: "School uniform, carrying pink backpack. Long hair.", contactName: "Sunita Verma", contactPhone: "+91 98765 43210", contactEmail: "sunita.v@email.com", imageUrls: ["https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1488426862026-3ee34e13d8bc?w=400&h=400&fit=crop&crop=face"], embeddings: [norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.13+2)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.13+2.03)*0.5))], createdAt: new Date(Date.now() - 1000*60*60*24*12).toISOString() },
-    { name: "Mohammed Ali", age: 6, gender: "Male", lastSeenLocation: "Charminar, Hyderabad", lastSeenDate: "2019-03-10", yearsMissing: 7.4, description: "White kurta, brown cap. Mole on right cheek.", contactName: "Fatima Ali", contactPhone: "+91 90000 11122", contactEmail: "fatima.ali@email.com", imageUrls: ["https://images.unsplash.com/photo-1484864310852-0b9a9b2a5b6a?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face"], embeddings: [norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.09+3)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.09+3.04)*0.5))], createdAt: new Date(Date.now() - 1000*60*60*24*60).toISOString() },
-  ]
-  const demoFound = [
-    { name: "Unidentified Boy #F-1023", estimatedAge: 13, gender: "Male", foundLocation: "New Delhi Railway Station", foundDate: "2025-08-10", description: "Found near platform 4, no ID. Speaks Hindi. Wearing grey hoodie.", reporterName: "RPF Officer Kumar", reporterPhone: "+91 98111 22334", imageUrls: ["https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop&crop=face"], embeddings: [norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.11+1.08)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.11+1.1)*0.5))], createdAt: new Date(Date.now() - 1000*60*60*24*5).toISOString() },
-    { name: "Unidentified Girl #F-1024", estimatedAge: 17, gender: "Female", foundLocation: "MG Road, Bangalore", foundDate: "2026-01-15", description: "Found at NGO shelter. Remembers name Priya but no surname.", reporterName: "Asha NGO", reporterPhone: "+91 98800 55667", imageUrls: ["https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face","https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=400&h=400&fit=crop&crop=face"], embeddings: [norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.13+2.05)*0.5)), norm(Array.from({length:128}, (_,i)=> Math.sin(i*0.13+2.07)*0.5))], createdAt: new Date(Date.now() - 1000*60*60*24*2).toISOString() },
-  ]
-  for (const p of demoLost) {
-    const id = uuidv4()
-    db.prepare(`INSERT INTO lost_persons (id, name, age, gender, lastSeenLocation, lastSeenDate, yearsMissing, description, contactName, contactPhone, contactEmail, hasAgeProgressed, status, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-      .run(id, p.name, p.age, p.gender, p.lastSeenLocation, p.lastSeenDate, p.yearsMissing, p.description, p.contactName, p.contactPhone, p.contactEmail, 0, 'missing', p.createdAt)
-    const stmt = db.prepare(`INSERT INTO lost_photos (id, person_id, url, embedding, is_primary, sort_order, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)`)
-    p.imageUrls.forEach((url,i)=> stmt.run(uuidv4(), id, url, JSON.stringify(p.embeddings[i]), i===0?1:0, i, new Date().toISOString()))
-  }
-  for (const p of demoFound) {
-    const id = uuidv4()
-    db.prepare(`INSERT INTO found_persons (id, name, estimatedAge, gender, foundLocation, foundDate, description, reporterName, reporterPhone, status, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-      .run(id, p.name, p.estimatedAge, p.gender, p.foundLocation, p.foundDate, p.description, p.reporterName, p.reporterPhone, 'unidentified', p.createdAt)
-    const stmt = db.prepare(`INSERT INTO found_photos (id, person_id, url, embedding, is_primary, sort_order, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)`)
-    p.imageUrls.forEach((url,i)=> stmt.run(uuidv4(), id, url, JSON.stringify(p.embeddings[i]), i===0?1:0, i, new Date().toISOString()))
-  }
-  console.log('Seeded demo data (multi-photo) into SQLite')
-}
 
 // Helpers to assemble persons with photos
 function rowToLost(row) { return { ...row, hasAgeProgressed: !!row.hasAgeProgressed, yearsMissing: Number(row.yearsMissing), age: Number(row.age) } }

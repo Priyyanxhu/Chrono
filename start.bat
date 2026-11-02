@@ -1,6 +1,6 @@
 @echo off
 echo ==========================================
-echo   CHRONO - AI Missing Person System
+echo   ORION - AI Missing Person System
 echo   Starting backend + frontend (production)
 echo ==========================================
 echo.

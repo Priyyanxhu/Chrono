@@ -1,8 +1,8 @@
-# CHRONO — AI Powered Missing Person Identification & Matching
+# ORION — AI Powered Missing Person Identification & Matching
 
-> **Every missing person deserves to be found.** CHRONO uses facial recognition + GAN age progression to match lost & found persons — even if 4, 7, or 10 years have passed.
+> **Every missing person deserves to be found.** ORION uses facial recognition + GAN age progression to match lost & found persons — even if 4, 7, or 10 years have passed.
 
-![CHRONO](https://img.shields.io/badge/AI-Face%20Recognition-teal) ![Age Progression](https://img.shields.io/badge/AI-Age%20Progression-violet) ![Stack](https://img.shields.io/badge/Stack-React%20%7C%20Node%20%7C%20Sharp-slate)
+![ORION](https://img.shields.io/badge/AI-Face%20Recognition-teal) ![Age Progression](https://img.shields.io/badge/AI-Age%20Progression-violet) ![Stack](https://img.shields.io/badge/Stack-React%20%7C%20Node%20%7C%20Sharp-slate)
 
 ---
 
@@ -41,7 +41,7 @@
 ## 🏗 Architecture
 
 ```
-CHRONO/
+ORION/
 ├── backend/               # Node + Express + SQLite
 │   ├── server.js          # REST API + static uploads
 │   ├── db.js              # SQLite (node:sqlite) — 4 tables, WAL
@@ -49,8 +49,8 @@ CHRONO/
 │   │   ├── matching.js    # embedding + cosine + scoring (multi-photo max)
 │   │   └── ageProgression.js # sharp-based morph (replace with GAN)
 │   ├── data/
-│   │   ├── CHRONO.db        # SQLite DB (WAL) — primary store
-│   │   ├── CHRONO.db-wal
+│   │   ├── ORION.db        # SQLite DB (WAL) — primary store
+│   │   ├── ORION.db-wal
 │   │   ├── lost.json      # legacy JSON (migrated to DB on first run)
 │   │   └── found.json     # legacy JSON
 │   └── uploads/           # image storage (many per person, up to 8/request)
@@ -69,7 +69,7 @@ CHRONO/
     └── vite.config.js     # proxies /api → :5000
 ```
 
-### Database — SQLite `data/CHRONO.db` (new)
+### Database — SQLite `data/ORION.db` (new)
 **4 tables** (migrates from JSON automatically, WAL mode, foreign keys):
 - `lost_persons` (id, name, age, gender, lastSeenLocation, lastSeenDate, yearsMissing, description, contactName/Phone/Email, hasAgeProgressed, status, createdAt)
 - `lost_photos` (id, person_id FK CASCADE, url, embedding JSON[128], ageProgressedImage TEXT (base64), ageProgressionMeta JSON, is_primary, sort_order, createdAt)
@@ -158,10 +158,10 @@ cd frontend && npm run build
 
 - **Face embeddings**: replace `generateEmbedding()` in `backend/utils/matching.js` with a Python microservice (InsightFace / dlib) called via HTTP or `onnxruntime-node`.
 - **Age progression**: replace `generateAgeProgressedImage()` with a call to Replicate `yuval-alaluf/SAM` or self-hosted HRFAE/GFPGAN. Current `sharp` morph is a realistic placeholder that preserves demo without GPU.
-- **DB**: SQLite `CHRONO.db` already handles many persons × many photos (WAL, CASCADE). For horizontal scale, swap to Postgres + `pgvector` / Mongo — keep embedding as `vector(128)`, photos as separate table (current schema maps 1:1). Current `db.js` uses `node:sqlite` (Node 24 built-in, no native deps).
+- **DB**: SQLite `ORION.db` already handles many persons × many photos (WAL, CASCADE). For horizontal scale, swap to Postgres + `pgvector` / Mongo — keep embedding as `vector(128)`, photos as separate table (current schema maps 1:1). Current `db.js` uses `node:sqlite` (Node 24 built-in, no native deps).
 - **Storage**: move `uploads/` to S3 / Cloudinary; store `imageUrl` as CDN URL (DB keeps URL).
 - **Auth**: add JWT + OTP for reporters; audit log for contact disclosure.
-- **Inspect DB**: `sqlite3 data/CHRONO.db "SELECT name, age FROM lost_persons;"` or DB Browser for SQLite. JS: `node -e "import {DatabaseSync} from 'node:sqlite'; const db=new DatabaseSync('backend/data/CHRONO.db'); console.log(db.prepare('SELECT COUNT(*) as c FROM lost_photos').get())"`
+- **Inspect DB**: `sqlite3 data/ORION.db "SELECT name, age FROM lost_persons;"` or DB Browser for SQLite. JS: `node -e "import {DatabaseSync} from 'node:sqlite'; const db=new DatabaseSync('backend/data/ORION.db'); console.log(db.prepare('SELECT COUNT(*) as c FROM lost_photos').get())"`
 
 ---
 
@@ -175,13 +175,13 @@ cd frontend && npm run build
 
 ## 📸 Demo Flow
 
-1. **Home** → see stats & live match card (Aarav example).
+1. **Home** → see stats & live match card.
 2. **Report Lost** → pick photo, set lastSeenDate 4 years ago → **Preview AI Age Progression** → Submit → generated aged image stored.
 3. **Report Found** → upload photo of same person today → submit.
 4. **AI Matches** → pair appears top-ranked (e.g., 94% Very High).
 5. **Detail view** → original vs aged side-by-side + breakdown bars + contact.
 
-Seed data includes 3 lost + 2 found to showcase matching immediately.
+
 
 ---
 

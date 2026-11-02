@@ -1,6 +1,6 @@
 @echo off
 echo ==========================================
-echo   CHRONO - First Time Setup
+echo   ORION - First Time Setup
 echo ==========================================
 echo.
 echo Installing dependencies...
